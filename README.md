@@ -1,4 +1,4 @@
-# Phage Gene Translation Extractor
+# Phage Specific Protein Sequence Extractor and Joiner
 
 This script extracts the translation sequences of the tail fiber protein gene and the terminase large subunit gene from GBK files. It then joins these sequences and writes them to an output file.
 

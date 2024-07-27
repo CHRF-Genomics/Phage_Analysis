@@ -62,7 +62,7 @@ def extract_translation_seq_of_tail_fiber_gene(input_dir_gbk, gbk_files):
     return gbk_dic_tail_keys_sorted_dict
 
 ```
-###Extract Translation Sequence of Terminase Large Subunit Gene
+### Extract Translation Sequence of Terminase Large Subunit Gene
 ```python
 
 def extract_translation_seq_of_terminase_gene(input_dir_gbk, gbk_files):

@@ -23,17 +23,25 @@ Update the input_dir_gbk variable in the script to point to this directory.
 Run the script.
 
 ### Libraries
+```python
 
 from Bio import SeqIO
 from Bio.Seq import translate
 import os
 
+```
+
 ### Define Input Directory and List GBK Files
+```python
+
 input_dir_gbk = "/path/to/your/gbk_files"
 gbk_files = [f for f in os.listdir(input_dir_gbk) if f.endswith(".gbk")]
 print(gbk_files)
 
+```
 ### Extract Translation Sequence of Tail Fiber Protein Gene
+```python
+
 def extract_translation_seq_of_tail_fiber_gene(input_dir_gbk, gbk_files):
     gbk_dic_tail = {}
     for gbk_file in gbk_files:
@@ -52,8 +60,11 @@ def extract_translation_seq_of_tail_fiber_gene(input_dir_gbk, gbk_files):
     gbk_dic_tail_keys_sorted_dict = {i: gbk_dic_tail[i] for i in gbk_dic_tail_keys_sorted}
 
     return gbk_dic_tail_keys_sorted_dict
-    
+
+```
 ###Extract Translation Sequence of Terminase Large Subunit Gene
+```python
+
 def extract_translation_seq_of_terminase_gene(input_dir_gbk, gbk_files):
     gbk_dic_terminase = {}
     for gbk_file in gbk_files:
@@ -73,7 +84,10 @@ def extract_translation_seq_of_terminase_gene(input_dir_gbk, gbk_files):
 
     return gbk_dic_terminase_keys_sorted_dict
 
+```
 ### Join Tail Fiber and Terminase Sequences
+```python
+
 def join_tail_sequence_terminase_sequence(input_dir_gbk, gbk_files, output_file):
     tail_sequence_subseq_dict = extract_translation_seq_of_tail_fiber_gene(input_dir_gbk, gbk_files)
     terminase_sequence_subseq_dict = extract_translation_seq_of_terminase_gene(input_dir_gbk, gbk_files)
@@ -83,8 +97,16 @@ def join_tail_sequence_terminase_sequence(input_dir_gbk, gbk_files, output_file)
     with open(output_file, 'w') as f:
         for phage_id, sequence in sorted(joint_dict.items()):
             f.write(f"{phage_id}\n\n{sequence}\n\n".replace("[", "").replace("]", "").replace("'", ""))
+```
 ### Example Usage
+```python
+
 join_tail_sequence_terminase_sequence(input_dir_gbk, gbk_files, "join_tail_sequence_terminase_sequence.fa")
-This will create a join_tail_sequence_terminase_sequence.fa file containing the joined sequences of the tail fiber protein and terminase large subunit genes for each phage.
+
+```
+This will create a join_tail_sequence_terminase_sequence.fa file containing the joined sequences of the tail fiber protein and 
+terminase large subunit genes for each phage.
+
+
 
 

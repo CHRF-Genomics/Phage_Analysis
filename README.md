@@ -1,4 +1,4 @@
-# Phage Specific Protein Sequence Extractor and Joiner
+# Phage Specific Protein Sequence Extractor 
 
 This script extracts the translation sequences of the tail fiber protein gene and the terminase large subunit gene from GBK files. It then joins these sequences and writes them to an output file.
 
@@ -85,26 +85,15 @@ def extract_translation_seq_of_terminase_gene(input_dir_gbk, gbk_files):
     return gbk_dic_terminase_keys_sorted_dict
 
 ```
-### Join Tail Fiber and Terminase Sequences
-```python
 
-def join_tail_sequence_terminase_sequence(input_dir_gbk, gbk_files, output_file):
-    tail_sequence_subseq_dict = extract_translation_seq_of_tail_fiber_gene(input_dir_gbk, gbk_files)
-    terminase_sequence_subseq_dict = extract_translation_seq_of_terminase_gene(input_dir_gbk, gbk_files)
-    joint_dict = {}
-    for phage_name in tail_sequence_subseq_dict.keys() & terminase_sequence_subseq_dict.keys():
-        joint_dict[">" + phage_name] = f"{tail_sequence_subseq_dict[phage_name]}{terminase_sequence_subseq_dict[phage_name]}"
-    with open(output_file, 'w') as f:
-        for phage_id, sequence in sorted(joint_dict.items()):
-            f.write(f"{phage_id}\n\n{sequence}\n\n".replace("[", "").replace("]", "").replace("'", ""))
-```
 ### Example Usage
 ```python
+extract_translation_seq_of_terminase_gene(input_dir_gbk, gbk_files)
+extract_translation_seq_of_tail_fiber_gene(input_dir_gbk, gbk_files)
 
-join_tail_sequence_terminase_sequence(input_dir_gbk, gbk_files, "join_tail_sequence_terminase_sequence.fa")
 
 ```
-This will create a join_tail_sequence_terminase_sequence.fa file containing the joined sequences of the tail fiber protein and 
+This will create two separate files that contain the sequences of the tail fiber protein and 
 terminase large subunit genes for each phage.
 
 
